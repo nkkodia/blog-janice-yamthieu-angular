@@ -1,17 +1,16 @@
 import { Component, signal } from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true, // Assure-toi que c'est présent
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class AppComponent { // Renomme "App" en "AppComponent"
-  title = 'blog-spirituel';
-
-  showSuccessPopup = false; // Variable pour contrôler la popup
+  showSuccessPopup = false;
 
   async handleSubmit(event: Event) {
     event.preventDefault();
@@ -24,11 +23,13 @@ export class AppComponent { // Renomme "App" en "AppComponent"
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
       });
-      // On remplace l'alerte système par notre popup stylisée
+
+      // 2. Déclencher l'affichage de la popup
       this.showSuccessPopup = true;
       form.reset();
+
     } catch (error) {
-      console.error(error);
+      console.error("Erreur Netlify:", error);
     }
   }
 }

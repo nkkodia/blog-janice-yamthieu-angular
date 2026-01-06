@@ -10,4 +10,23 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 })
 export class AppComponent { // Renomme "App" en "AppComponent"
   title = 'blog-spirituel';
+
+  // Dans ton fichier app.ts
+  async handleSubmit(event: Event) {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+      alert("Merci ! Votre inscription a bien été reçue.");
+      form.reset();
+    } catch (error) {
+      alert("Oups, une erreur est survenue. Réessayez plus tard.");
+    }
+  }
 }

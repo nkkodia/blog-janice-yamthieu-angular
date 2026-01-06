@@ -39,18 +39,8 @@
     <h2 class="text-4xl font-serif font-bold text-[#3D2B3D] italic">Restez connecté à votre foi</h2>
     <p class="mt-4 text-stone-600 text-lg font-medium">Recevez chaque matin votre méditation quotidienne.</p>
 
-    <form name="newsletter"
-          method="POST"
-          action="/"
-          netlify
-          data-netlify-honeypot="bot-field"
-          class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-
+    <form name="newsletter" method="POST" action="/" netlify>
       <input type="hidden" name="form-name" value="newsletter" />
-
-      <p class="hidden">
-        <label>Don’t fill this out: <input name="bot-field" /></label>
-      </p>
 
       <input type="email"
              name="email"
@@ -68,11 +58,9 @@
 
 <footer class="bg-[#FAF9F6] py-12 border-t border-stone-100">
   <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
-
     <div class="text-stone-400 text-sm font-medium italic">
       © 2026 — Développé avec ❤️ par <span class="text-[#4B2C5E] font-bold not-italic">Maryline Kouamé-Kodia</span>
     </div>
-
     <div class="flex gap-6 text-[10px] font-black text-stone-400 uppercase tracking-widest">
       <a routerLink="/" class="hover:text-[#8B5E8B] transition-colors">Accueil</a>
       <a routerLink="/about" class="hover:text-[#8B5E8B] transition-colors">À Propos</a>
@@ -86,6 +74,5 @@
         </svg>
       </a>
     </div>
-
   </div>
 </footer>

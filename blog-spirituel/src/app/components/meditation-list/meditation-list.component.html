@@ -30,11 +30,15 @@
                [innerHTML]="renderHtml(item.fields.contenu)">
           </div>
 
-          <footer class="mt-10 pt-8 border-t border-[#F3E8F3] flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
-            <span class="text-stone-400 font-bold uppercase tracking-widest text-[10px]">Partager cette méditation</span>
-            <button class="text-[#8E44AD] font-black hover:text-[#4B2C5E] transition-colors uppercase tracking-widest text-[11px] flex items-center gap-2">
-              S'abonner à la newsletter
-              <span class="text-xl">→</span>
+          <footer class="mt-10 pt-8 border-t border-[#F3E8F3] flex justify-between items-center">
+            <button (click)="shareContent(item.fields.titre)"
+                    class="text-stone-400 font-bold uppercase tracking-widest text-[10px] hover:text-[#8E44AD] transition-colors">
+              PARTAGER CETTE MÉDITATION
+            </button>
+
+            <button (click)="scrollToNewsletter()"
+                    class="text-[#8E44AD] font-black uppercase tracking-widest text-[11px] flex items-center gap-2 hover:text-[#4B2C5E] transition-all">
+              S'ABONNER À LA NEWSLETTER <span class="text-xl">→</span>
             </button>
           </footer>
         </article>

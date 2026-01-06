@@ -34,21 +34,54 @@
   <router-outlet></router-outlet>
 </main>
 
-<section class="bg-[#F3E8F3] py-20 border-t border-white/50">
+<section id="newsletter-section" class="bg-[#F3E8F3] py-20 border-t border-white/50">
   <div class="max-w-4xl mx-auto px-4 text-center">
     <h2 class="text-4xl font-serif font-bold text-[#3D2B3D] italic">Restez connecté à votre foi</h2>
-    <p class="mt-4 text-stone-600 text-lg font-medium">Recevez chaque matin votre méditation et motivation quotidienne directement par email.</p>
+    <p class="mt-4 text-stone-600 text-lg font-medium">Recevez chaque matin votre méditation quotidienne.</p>
 
-    <form class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+    <form name="newsletter"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+
+      <p class="hidden">
+        <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+      </p>
+
       <input type="email"
+             name="email"
              placeholder="Votre adresse email"
              class="px-8 py-5 rounded-2xl border-none focus:ring-2 focus:ring-[#8B5E8B] w-full sm:w-96 shadow-inner bg-white/80"
              required>
+
       <button type="submit"
-              class="bg-[#8B5E8B] text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-[#704970] transition-all shadow-xl hover:shadow-[#8B5E8B]/20 active:scale-95">
+              class="bg-[#8B5E8B] text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-[#704970] transition-all shadow-xl active:scale-95">
         S'inscrire
       </button>
     </form>
-    <p class="mt-6 text-xs text-stone-400 uppercase tracking-widest font-bold">Rejoignez notre communauté de partage.</p>
   </div>
 </section>
+<footer class="bg-[#FAF9F6] py-12 border-t border-stone-100">
+  <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+
+    <div class="text-stone-400 text-sm font-medium italic">
+      © 2026 — Développé avec ❤️ par <span class="text-[#4B2C5E] font-bold not-italic">Maryline Kouamé-Kodia</span>
+    </div>
+
+    <div class="flex gap-6 text-[10px] font-black text-stone-400 uppercase tracking-widest">
+      <a routerLink="/" class="hover:text-[#8B5E8B] transition-colors">Accueil</a>
+      <a routerLink="/about" class="hover:text-[#8B5E8B] transition-colors">À Propos</a>
+      <a href="https://www.linkedin.com/in/maryline-kouamé-kodia-078297179"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="flex items-center gap-2 hover:text-[#4B2C5E] transition-colors group">
+        <span>Me contacter</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</footer>

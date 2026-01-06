@@ -39,25 +39,29 @@
     <h2 class="text-4xl font-serif font-bold text-[#3D2B3D] italic">Restez connecté à votre foi</h2>
     <p class="mt-4 text-stone-600 text-lg font-medium">Recevez chaque matin votre méditation quotidienne.</p>
 
-    <form name="contact" method="POST" data-netlify="true">
-      <p>
-        <label>Your Name: <input type="text" name="name" /></label>
+    <form name="newsletter"
+          method="POST"
+          action="/"
+          netlify
+          data-netlify-honeypot="bot-field"
+          class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+
+      <input type="hidden" name="form-name" value="newsletter" />
+
+      <p class="hidden">
+        <label>Don’t fill this out: <input name="bot-field" /></label>
       </p>
-      <p>
-        <label>Your Email: <input type="email" name="email" /></label>
-      </p>
-      <p>
-        <label>Your Role: <select name="role[]" multiple>
-          <option value="leader">Leader</option>
-          <option value="follower">Follower</option>
-        </select></label>
-      </p>
-      <p>
-        <label>Message: <textarea name="message"></textarea></label>
-      </p>
-      <p>
-        <button type="submit">Send</button>
-      </p>
+
+      <input type="email"
+             name="email"
+             placeholder="Votre adresse email"
+             class="px-8 py-5 rounded-2xl border-none focus:ring-2 focus:ring-[#8B5E8B] w-full sm:w-96 shadow-inner bg-white/80"
+             required>
+
+      <button type="submit"
+              class="bg-[#8B5E8B] text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-[#704970] transition-all shadow-xl active:scale-95">
+        S'inscrire
+      </button>
     </form>
   </div>
 </section>

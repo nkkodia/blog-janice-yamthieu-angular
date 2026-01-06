@@ -41,14 +41,14 @@
 
     <form name="newsletter"
           method="POST"
-          data-netlify="true"
+          netlify
           data-netlify-honeypot="bot-field"
           class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
 
       <input type="hidden" name="form-name" value="newsletter" />
 
       <p class="hidden">
-        <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+        <label>Don’t fill this out: <input name="bot-field" /></label>
       </p>
 
       <input type="email"
@@ -62,7 +62,6 @@
         S'inscrire
       </button>
     </form>
-    <p class="mt-6 text-xs text-stone-400 uppercase tracking-widest font-bold">Rejoignez notre communauté de partage.</p>
   </div>
 </section>
 

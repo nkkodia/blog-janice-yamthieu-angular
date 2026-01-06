@@ -1,0 +1,43 @@
+<div class="bg-stone-50 min-h-screen py-12 px-4">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-serif font-bold text-stone-900 mb-2 italic text-center text-balance">Méditations Quotidiennes</h1>
+    <p class="text-stone-600 mb-12 italic text-center">Un temps pour l'esprit, chaque jour.</p>
+
+    <div class="space-y-12">
+      @for (item of meditations; track item.sys.id) {
+        <article class="bg-white p-8 rounded-lg shadow-sm border border-stone-200 overflow-hidden">
+
+          @if (item.fields.image) {
+            <div class="mb-6 -mx-8 -mt-8 overflow-hidden bg-stone-100">
+              <img [src]="'https:' + item.fields.image.fields.file.url"
+                   [alt]="item.fields.titre"
+                   class="w-full h-auto max-h-[500px] object-cover hover:scale-105 transition-transform duration-500">
+            </div>
+          }
+
+          <header class="mb-6">
+            <span class="text-amber-700 font-bold text-xs uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-full">
+              {{ item.fields.categorie }}
+            </span>
+            <h2 class="text-3xl font-serif font-bold text-stone-900 mt-4 italic">
+              {{ item.fields.titre }}
+            </h2>
+          </header>
+
+          <div class="prose prose-stone lg:prose-xl text-stone-800 leading-relaxed"
+               [innerHTML]="renderHtml(item.fields.contenu)">
+          </div>
+
+          <footer class="mt-8 pt-6 border-t border-stone-100 flex justify-between items-center text-sm text-stone-500">
+            <span>Partager cette méditation</span>
+            <button class="text-amber-700 font-bold hover:underline italic">S'abonner à la newsletter →</button>
+          </footer>
+        </article>
+      } @empty {
+        <div class="text-center py-20 bg-white rounded-lg border-2 border-dashed border-stone-200">
+          <p class="text-stone-500 italic">Chargement des méditations en cours ou aucune méditation publiée...</p>
+        </div>
+      }
+    </div>
+  </div>
+</div>

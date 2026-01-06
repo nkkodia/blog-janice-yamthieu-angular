@@ -1,0 +1,8 @@
+// Style pour le rendu HTML de Contentful
+:host ::ng-deep {
+  .prose {
+    p { margin-bottom: 1.25rem; }
+    b, strong { color: #444; font-weight: 700; }
+    ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
+  }
+}

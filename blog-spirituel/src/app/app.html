@@ -17,7 +17,7 @@
            class="hover:text-[#8E44AD] pb-1 flex items-center gap-1 transition-all">
           MULTIMÉDIA
         </a>
-        <div class="absolute ... bg-white border border-stone-50 shadow-2xl rounded-2xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+        <div class="absolute bg-white border border-stone-50 shadow-2xl rounded-2xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
         </div>
       </div>
 
@@ -45,6 +45,8 @@
           data-netlify-honeypot="bot-field"
           class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
 
+      <input type="hidden" name="form-name" value="newsletter" />
+
       <p class="hidden">
         <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
       </p>
@@ -60,8 +62,10 @@
         S'inscrire
       </button>
     </form>
+    <p class="mt-6 text-xs text-stone-400 uppercase tracking-widest font-bold">Rejoignez notre communauté de partage.</p>
   </div>
 </section>
+
 <footer class="bg-[#FAF9F6] py-12 border-t border-stone-100">
   <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
 

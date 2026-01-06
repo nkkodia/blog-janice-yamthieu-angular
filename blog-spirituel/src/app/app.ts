@@ -11,7 +11,6 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 export class AppComponent { // Renomme "App" en "AppComponent"
   title = 'blog-spirituel';
 
-  // Dans ton fichier app.ts
   async handleSubmit(event: Event) {
     event.preventDefault();
     const form = event.target as HTMLFormElement;

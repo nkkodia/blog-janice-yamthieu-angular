@@ -1,41 +1,46 @@
-<div class="bg-stone-50 min-h-screen py-12 px-4">
+<div class="bg-[#FAF9F6] min-h-screen py-16 px-4">
   <div class="max-w-4xl mx-auto">
-    <h1 class="text-4xl font-serif font-bold text-stone-900 mb-2 italic text-center text-balance">Méditations Quotidiennes</h1>
-    <p class="text-stone-600 mb-12 italic text-center">Un temps pour l'esprit, chaque jour.</p>
+    <h1 class="text-5xl font-serif font-bold text-[#4B2C5E] mb-2 italic text-center text-balance tracking-tight">
+      Méditations Quotidiennes
+    </h1>
+    <p class="text-stone-500 mb-16 italic text-center font-medium">Un temps pour l'esprit, chaque jour.</p>
 
-    <div class="space-y-12">
+    <div class="space-y-16">
       @for (item of meditations; track item.sys.id) {
-        <article class="bg-white p-8 rounded-lg shadow-sm border border-stone-200 overflow-hidden">
+        <article class="bg-white p-8 rounded-[2rem] shadow-xl shadow-[#8B5E8B]/5 border border-[#F3E8F3] overflow-hidden transition-all hover:translate-y-[-4px]">
 
           @if (item.fields.image) {
-            <div class="mb-6 -mx-8 -mt-8 overflow-hidden bg-stone-100">
+            <div class="mb-8 -mx-8 -mt-8 overflow-hidden bg-stone-100 aspect-video">
               <img [src]="'https:' + item.fields.image.fields.file.url"
                    [alt]="item.fields.titre"
-                   class="w-full h-auto max-h-[500px] object-cover hover:scale-105 transition-transform duration-500">
+                   class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
             </div>
           }
 
-          <header class="mb-6">
-            <span class="text-amber-700 font-bold text-xs uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-full">
+          <header class="mb-8">
+            <span class="inline-block bg-gradient-to-r from-[#4A90E2] to-[#8E44AD] text-white font-black text-[10px] uppercase tracking-[0.2em] px-4 py-1.5 rounded-full shadow-md">
               {{ item.fields.categorie }}
             </span>
-            <h2 class="text-3xl font-serif font-bold text-stone-900 mt-4 italic">
+            <h2 class="text-4xl font-serif font-bold text-[#3D2B3D] mt-6 italic leading-tight">
               {{ item.fields.titre }}
             </h2>
           </header>
 
-          <div class="prose prose-stone lg:prose-xl text-stone-800 leading-relaxed"
+          <div class="prose prose-stone lg:prose-xl text-stone-700 leading-relaxed italic"
                [innerHTML]="renderHtml(item.fields.contenu)">
           </div>
 
-          <footer class="mt-8 pt-6 border-t border-stone-100 flex justify-between items-center text-sm text-stone-500">
-            <span>Partager cette méditation</span>
-            <button class="text-amber-700 font-bold hover:underline italic">S'abonner à la newsletter →</button>
+          <footer class="mt-10 pt-8 border-t border-[#F3E8F3] flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
+            <span class="text-stone-400 font-bold uppercase tracking-widest text-[10px]">Partager cette méditation</span>
+            <button class="text-[#8E44AD] font-black hover:text-[#4B2C5E] transition-colors uppercase tracking-widest text-[11px] flex items-center gap-2">
+              S'abonner à la newsletter
+              <span class="text-xl">→</span>
+            </button>
           </footer>
         </article>
       } @empty {
-        <div class="text-center py-20 bg-white rounded-lg border-2 border-dashed border-stone-200">
-          <p class="text-stone-500 italic">Chargement des méditations en cours ou aucune méditation publiée...</p>
+        <div class="text-center py-24 bg-white rounded-[2rem] border-2 border-dashed border-[#F3E8F3]">
+          <p class="text-stone-400 italic font-serif text-xl">Le temps du recueillement arrive bientôt...</p>
         </div>
       }
     </div>

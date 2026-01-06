@@ -1,39 +1,61 @@
-<div class="bg-stone-50 min-h-screen py-12 px-4">
+<div class="bg-[#FAF9F6] min-h-screen py-16 px-4">
   <div class="max-w-5xl mx-auto">
-    <h1 class="text-4xl font-serif font-bold text-stone-900 mb-12 text-center italic">Espace Multimédia</h1>
+
+    <h1 class="text-5xl font-serif font-bold text-[#4B2C5E] mb-16 text-center italic tracking-tight">
+      Espace Multimédia
+    </h1>
 
     <div class="grid gap-12">
       @for (item of filteredItems; track item.sys.id) {
-        <article class="bg-white rounded-3xl shadow-sm border border-stone-200 overflow-hidden">
+        <article class="group relative p-[2px] rounded-[2.5rem] bg-gradient-to-br from-[#4A90E2] via-[#9055A2] to-[#D060D0] shadow-xl transition-all duration-500 hover:scale-[1.01]">
 
-          @if (item.fields['type'] === 'Video') {
-            <div class="aspect-video bg-black relative">
-              <iframe [src]="getSafeUrl(item.fields['lienUrl'])"
-                      class="w-full h-full border-0"
-                      [title]="item.fields['titre']"
-                      allowfullscreen></iframe>
+          <div class="bg-white rounded-[2.4rem] overflow-hidden">
+
+            @if (item.fields['type'] === 'Video') {
+              <div class="aspect-video bg-black relative">
+                <iframe [src]="getSafeUrl(item.fields['lienUrl'])"
+                        class="w-full h-full border-0"
+                        [title]="item.fields['titre']"
+                        allowfullscreen></iframe>
+              </div>
+            }
+
+            @if (item.fields['type'] === 'Podcast') {
+              <div class="p-6 bg-[#3D2B3D]"> <iframe [src]="getSafeUrl(item.fields['lienUrl'])"
+                                                     width="100%"
+                                                     height="152"
+                                                     class="border-0 rounded-2xl shadow-lg"
+                                                     [title]="item.fields['titre']"
+                                                     allow="encrypted-media"></iframe>
+              </div>
+            }
+
+            <div class="p-10">
+              <span class="inline-block bg-gradient-to-r from-[#4A90E2] to-[#8E44AD] text-white font-black text-[10px] uppercase tracking-[0.2em] px-5 py-1.5 rounded-full shadow-md">
+                {{ item.fields['type'] }}
+              </span>
+
+              <h2 class="text-4xl font-serif font-bold text-[#3D2B3D] mt-6 italic leading-tight">
+                {{ item.fields['titre'] }}
+              </h2>
+
+              <p class="text-stone-400 mt-3 font-medium italic tracking-wide lowercase">
+                {{ item.fields['sousCategorie'] }}
+              </p>
+
+              <div class="mt-8 pt-6 border-t border-[#F3E8F3] flex items-center justify-between text-[#8E44AD]">
+                <span class="text-[10px] font-black uppercase tracking-widest">Découvrir l'épisode</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
             </div>
-          }
-
-          @if (item.fields['type'] === 'Podcast') {
-            <div class="p-4 bg-stone-900">
-              <iframe [src]="getSafeUrl(item.fields['lienUrl'])"
-                      width="100%"
-                      height="152"
-                      class="border-0 rounded-xl"
-                      [title]="item.fields['titre']"
-                      allow="encrypted-media"></iframe>
-            </div>
-          }
-
-          <div class="p-8">
-            <span class="text-amber-700 font-bold text-xs uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-full">
-              {{ item.fields['type'] }}
-            </span>
-            <h2 class="text-3xl font-serif font-bold text-stone-900 mt-4 italic">{{ item.fields['titre'] }}</h2>
-            <p class="text-stone-500 mt-2">{{ item.fields['sousCategorie'] }}</p>
           </div>
         </article>
+      } @empty {
+        <div class="text-center py-20 bg-white rounded-[2.5rem] border-2 border-dashed border-[#F3E8F3]">
+          <p class="text-stone-400 italic font-serif text-xl">Préparation des nouveaux contenus inspirants...</p>
+        </div>
       }
     </div>
   </div>

@@ -11,6 +11,8 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 export class AppComponent { // Renomme "App" en "AppComponent"
   title = 'blog-spirituel';
 
+  showSuccessPopup = false; // Variable pour contrôler la popup
+
   async handleSubmit(event: Event) {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
@@ -22,10 +24,11 @@ export class AppComponent { // Renomme "App" en "AppComponent"
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
       });
-      alert("Merci ! Votre inscription a bien été reçue.");
+      // On remplace l'alerte système par notre popup stylisée
+      this.showSuccessPopup = true;
       form.reset();
     } catch (error) {
-      alert("Oups, une erreur est survenue. Réessayez plus tard.");
+      console.error(error);
     }
   }
 }

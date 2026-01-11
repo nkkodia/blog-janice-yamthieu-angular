@@ -9,7 +9,7 @@ import {CommonModule} from '@angular/common';
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class AppComponent { // Renomme "App" en "AppComponent"
+export class AppComponent {
   showSuccessPopup = false;
 
   async handleSubmit(event: Event) {
@@ -24,7 +24,6 @@ export class AppComponent { // Renomme "App" en "AppComponent"
         body: new URLSearchParams(formData as any).toString(),
       });
 
-      // 2. Déclencher l'affichage de la popup
       this.showSuccessPopup = true;
       form.reset();
 

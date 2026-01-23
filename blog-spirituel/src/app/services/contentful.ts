@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createClient, ContentfulClientApi } from 'contentful';
 import { environment } from '../../environments/environment';
+import {from} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,13 @@ export class ContentfulService {
       console.error("ERREUR CRITIQUE CONTENTFUL :", error);
       return [];
     }
+  }
+
+  // Récupérer les produits de la boutique (Ebooks, Audio, etc.)
+  getProducts() {
+    return from(this.client.getEntries({
+      content_type: 'product', // Doit correspondre à l'ID du Content Type dans Contentful
+      order: ['-sys.createdAt'] // Affiche les plus récents en premier
+    }));
   }
 }

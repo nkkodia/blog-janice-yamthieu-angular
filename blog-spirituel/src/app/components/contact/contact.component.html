@@ -1,0 +1,55 @@
+<div class="max-w-2xl mx-auto px-4 py-16">
+  <h2 class="text-4xl font-serif font-bold text-[#4B2C5E] mb-8 italic text-center">Contactez Janice</h2>
+
+  @if (!showSuccessPopup) {
+    <form (submit)="handleContactSubmit($event)"
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          class="bg-white p-8 rounded-[2rem] shadow-xl border border-[#F3E8F3] space-y-6">
+
+      <input type="hidden" name="form-name" value="contact" />
+
+      <div>
+        <label class="block text-[10px] font-black text-stone-400 uppercase tracking-widest mb-2 px-2">Objet de votre message</label>
+        <select name="objet" class="w-full p-4 rounded-2xl bg-stone-50 border-none focus:ring-2 focus:ring-[#8B5E8B] font-medium text-[#3D2B3D]" required>
+          <option value="priere">Demander une prière</option>
+          <option value="temoignage">Témoigner</option>
+          <option value="rejoindre">Me rejoindre</option>
+          <option value="don">Faire un don</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-[10px] font-black text-stone-400 uppercase tracking-widest mb-2 px-2">Votre message</label>
+        <textarea name="message"
+                  placeholder="Écrivez ici..."
+                  class="w-full p-4 h-40 rounded-2xl bg-stone-50 border-none focus:ring-2 focus:ring-[#8B5E8B] font-medium text-[#3D2B3D]"
+                  required></textarea>
+      </div>
+
+      <button type="submit"
+              [disabled]="isSubmitting"
+              class="w-full bg-[#8B5E8B] text-white py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-[#704970] transition-all shadow-lg active:scale-95 disabled:opacity-50">
+        {{ isSubmitting ? 'Envoi en cours...' : 'Envoyer mon message' }}
+      </button>
+    </form>
+  }
+
+  @if (showSuccessPopup) {
+    <div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm animate-fade-in">
+      <div class="bg-white p-8 rounded-[2.5rem] shadow-2xl max-w-sm w-full text-center border-2 border-[#F3E8F3]">
+        <div class="w-16 h-16 bg-[#F3E8F3] rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#8B5E8B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 class="text-2xl font-serif font-bold text-[#3D2B3D]">Message envoyé !</h3>
+        <p class="text-stone-500 mt-2 font-medium">Janice a bien reçu votre demande et vous répondra prochainement.</p>
+        <button (click)="showSuccessPopup = false" class="mt-8 w-full bg-[#8B5E8B] text-white py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-[#704970] transition-all">
+          Fermer
+        </button>
+      </div>
+    </div>
+  }
+</div>

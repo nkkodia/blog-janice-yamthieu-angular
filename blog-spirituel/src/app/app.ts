@@ -11,6 +11,7 @@ import {CommonModule} from '@angular/common';
 })
 export class AppComponent {
   showSuccessPopup = false;
+  newsletterSuccess = false;
 
   async handleSubmit(event: Event) {
     event.preventDefault();
@@ -24,6 +25,7 @@ export class AppComponent {
         body: new URLSearchParams(formData as any).toString(),
       });
 
+      this.newsletterSuccess = true;
       this.showSuccessPopup = true;
       form.reset();
 

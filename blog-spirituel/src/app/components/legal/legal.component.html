@@ -1,0 +1,31 @@
+<div class="max-w-4xl mx-auto px-6 py-20">
+  <div class="bg-white p-10 md:p-16 rounded-[3rem] shadow-xl border border-[#F3E8F3]">
+
+    @if (type === 'mentions') {
+      <h1 class="text-4xl font-serif font-bold text-[#4B2C5E] mb-8">Mentions Légales</h1>
+      <div class="prose prose-stone text-stone-600 space-y-4 italic">
+        <p><strong>Éditeur du site :</strong> Janice Allémé-Yamthieu</p>
+        <p><strong>Hébergement :</strong> Amen SAS, 12-14 Rond Point des Champs Élysées, 75008 Paris</p>
+        <p><strong>Propriété :</strong> Tous les contenus sont la propriété exclusive de l'auteur.</p>
+      </div>
+    }
+
+    @else if (type === 'cgv') {
+      <h1 class="text-4xl font-serif font-bold text-[#4B2C5E] mb-8">Conditions Générales de Vente</h1>
+      <div class="prose prose-stone text-stone-600 space-y-4 italic">
+        <p><strong>Objet :</strong> Vente de produits numériques (Ebooks PDF, fichiers audio).</p>
+        <p><strong>Paiement :</strong> Transactions sécurisées via Gumroad/Lemon Squeezy.</p>
+        <p><strong>Livraison :</strong> Téléchargement instantané après paiement.</p>
+        <p class="bg-[#F3E8F3] p-4 rounded-xl border-l-4 border-[#8B5E8B]">
+          <strong>Rétractation :</strong> Aucun remboursement n'est possible après le téléchargement du fichier (Art. L221-28 du Code de la consommation).
+        </p>
+      </div>
+    }
+
+    @else {
+      <h1 class="text-4xl font-serif font-bold text-[#4B2C5E] mb-8">Confidentialité</h1>
+      <p class="text-stone-600 italic text-lg">Vos données sont protégées et utilisées uniquement pour la newsletter de Janice.</p>
+    }
+
+  </div>
+</div>

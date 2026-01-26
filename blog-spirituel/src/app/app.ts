@@ -27,7 +27,7 @@ export class AppComponent {
     // Configuration de l'appel Brevo
     const url = 'https://api.brevo.com/v3/contacts';
     const headers = new HttpHeaders({
-      'api-key': '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', // La clé trouvée dans "Clés API et MCP"
+      'api-key': '', // La clé trouvée dans "Clés API et MCP"
       'Content-Type': 'application/json'
     });
 

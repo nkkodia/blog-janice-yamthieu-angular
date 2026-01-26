@@ -17,32 +17,41 @@ export class ContactComponent {
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
 
+    // On récupère la valeur du menu déroulant "objet"
+    const objetSelectionne = formData.get('objet');
+
     try {
-      // --- ÉTAPE A : Envoi vers Netlify (pour l'archive) ---
+      // 1. Archivage Netlify
       await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
       });
 
-      // --- ÉTAPE B : Envoi vers l'email de Janice via EmailJS ---
-      // Remplace les codes ci-dessous par ceux que Janice va te donner
+      // 2. Envoi EmailJS à Janice
       await emailjs.sendForm(
-        'SERVICE_ID_DE_JANICE',
-        'TEMPLATE_ID_DE_JANICE',
+        'service_hh1jjka',
+        'contact_form',
         form,
-        'PUBLIC_KEY_DE_JANICE'
+        '0SZXj3QB-3FeWFIum'
       );
 
-      // --- ÉTAPE C : Succès ---
+      // 3. Logique Spécifique PayPal
+      if (objetSelectionne === 'don') {
+        // On affiche d'abord un message ou on redirige directement
+        // L'utilisation de _blank permet de garder le site ouvert à côté
+        window.open('https://www.paypal.me/ApoYamthieu', '_blank');
+      }
+
       this.showSuccessPopup = true;
       form.reset();
 
     } catch (error) {
-      console.error("Erreur lors de l'envoi :", error);
-      alert("Une erreur est survenue, mais Janice recevra votre message via Netlify.");
+      console.error("Erreur :", error);
+      alert("Une erreur est survenue lors de l'envoi.");
     } finally {
       this.isSubmitting = false;
     }
   }
+
 }

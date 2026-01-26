@@ -6,14 +6,15 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './legal.component.html'
 })
 export class LegalComponent implements OnInit {
-  type: string = '';
+  type: string | null = '';
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    // On écoute le changement de route pour savoir quelle page afficher
-    this.route.data.subscribe(data => {
-      this.type = data['type'];
+    // ON ÉCOUTE LE PARAMÈTRE DYNAMIQUE (:type)
+    this.route.paramMap.subscribe(params => {
+      this.type = params.get('type');
+      console.log("Page légale affichée :", this.type);
     });
   }
 }

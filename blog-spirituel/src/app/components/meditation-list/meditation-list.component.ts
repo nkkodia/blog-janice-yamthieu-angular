@@ -1,11 +1,12 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ContentfulService} from '../../services/contentful';
 import {documentToHtmlString} from '@contentful/rich-text-html-renderer';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-meditation-list',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './meditation-list.component.html',
   styleUrl: './meditation-list.component.scss'
 })
@@ -55,5 +56,20 @@ export class MeditationListComponent implements OnInit {
     if (footerElement) {
       footerElement.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  // Ajoute ces fonctions dans ta classe MeditationListComponent
+  scrollToBottom() {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    });
+  }
+
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
 }

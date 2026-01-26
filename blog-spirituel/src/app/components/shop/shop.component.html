@@ -1,35 +1,66 @@
-<div class="max-w-6xl mx-auto px-4 py-16">
-  <h1 class="text-5xl font-serif font-bold text-[#4B2C5E] mb-4 italic text-center">La Boutique Spirituelle</h1>
-  <p class="text-stone-500 mb-16 text-center max-w-2xl mx-auto">Retrouvez nos Ebooks et ressources exclusives pour approfondir votre foi.</p>
+<div class="max-w-6xl mx-auto py-12 px-4">
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-    @for (produit of (produits$ | async); track produit.sys.id) {
-      <div class="bg-white rounded-[2.5rem] p-6 shadow-xl border border-[#F3E8F3] flex flex-col transition-transform hover:scale-[1.02]">
+  <div class="flex justify-center gap-10 mb-12 border-b border-stone-100">
+    <button (click)="filtrer('ebook')"
+            class="pb-4 text-xl font-serif italic transition-all relative"
+            [class.text-[#8B5E8B]]="ongletActif === 'ebook'"
+            [class.text-stone-300]="ongletActif !== 'ebook'">
+      E-books
+      @if (ongletActif === 'ebook') {
+        <div class="absolute bottom-0 left-0 w-full h-0.5 bg-[#8B5E8B]"></div>
+      }
+    </button>
+    <button (click)="filtrer('photo')"
+            class="pb-4 text-xl font-serif italic transition-all relative"
+            [class.text-[#8B5E8B]]="ongletActif === 'photo'"
+            [class.text-stone-300]="ongletActif !== 'photo'">
+      Photos Inspirantes
+      @if (ongletActif === 'photo') {
+        <div class="absolute bottom-0 left-0 w-full h-0.5 bg-[#8B5E8B]"></div>
+      }
+    </button>
+  </div>
 
-        <div class="aspect-[3/4] rounded-[2rem] overflow-hidden mb-6 bg-stone-100 shadow-inner">
-          <img [src]="'https:' + produit.fields.image.fields.file.url"
+  <div class="mb-10 p-6 bg-[#F3E8F3] rounded-2xl flex items-center justify-center gap-4 border-l-4 border-[#8B5E8B]">
+    <input type="checkbox" id="cgv" [(ngModel)]="cgvAcceptees" class="w-6 h-6 accent-[#8B5E8B] cursor-pointer">
+    <label for="cgv" class="text-sm text-stone-700 italic cursor-pointer">
+      J'ai lu et j'accepte les <a routerLink="/legal/cgv" class="underline font-bold">CGV</a> et la <a routerLink="/legal/confidentialite" class="underline">Politique de confidentialité</a>.
+    </label>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    @for (produit of produitsFiltres; track produit.sys.id) {
+      <div class="bg-white rounded-[2rem] overflow-hidden shadow-sm border border-stone-50 flex flex-col">
+
+        <div class="aspect-square overflow-hidden bg-stone-100">
+          <img [src]="'https:' + produit.fields.image?.fields?.file?.url"
                class="w-full h-full object-cover">
         </div>
 
-        <div class="flex-1">
-          <span class="text-[10px] font-black text-[#8E44AD] uppercase tracking-widest px-3 py-1 bg-[#F3E8F3] rounded-full">
-            {{ produit.fields.type }} </span>
-          <h2 class="text-2xl font-serif font-bold text-[#3D2B3D] mt-4 leading-tight">{{ produit.fields.nom }}</h2>
-          <p class="text-stone-500 mt-3 text-sm italic">{{ produit.fields.description }}</p>
-        </div>
+        <div class="p-6 flex-grow flex flex-col justify-between">
+          <div>
+            <h3 class="text-sm font-bold text-stone-800 mb-4">{{ produit.fields.nom }}</h3>
+            <span class="font-black text-[#8B5E8B] text-lg">
+                {{ produit.fields.prix > 0 ? produit.fields.prix + '€' : 'Gratuit' }}
+            </span>
+          </div>
 
-        <div class="mt-8 pt-6 border-t border-stone-50 flex items-center justify-between">
-          <span class="text-2xl font-serif font-bold text-[#4B2C5E]">{{ produit.fields.prix }}€</span>
-
-          <a [href]="produit.fields.lienAchat"
-             target="_blank"
-             class="bg-[#8B5E8B] text-white px-6 py-3 rounded-xl font-black uppercase tracking-tighter text-xs hover:bg-[#4B2C5E] transition-all">
-            Acheter & Télécharger
-          </a>
+          <div class="mt-6">
+            @if (!cgvAcceptees) {
+              <button disabled class="w-full text-center bg-stone-100 text-stone-400 py-3 rounded-xl font-bold uppercase text-[10px] tracking-widest cursor-not-allowed border border-stone-200">
+                Accepter les CGV
+              </button>
+            } @else {
+              <a [href]="produit.fields.isPayant ? produit.fields.lienGumroad : 'https:' + produit.fields.image?.fields?.file?.url"
+                 [target]="produit.fields.isPayant ? '_blank' : '_self'"
+                 [download]="!produit.fields.isPayant"
+                 class="block w-full text-center bg-[#8B5E8B] text-white py-3 rounded-xl font-bold uppercase text-[10px] tracking-widest transition-all hover:bg-[#704970] shadow-md">
+                {{ produit.fields.isPayant ? 'Acheter' : 'Télécharger' }}
+              </a>
+            }
+          </div>
         </div>
       </div>
-    } @empty {
-      <p>La boutique est en cours de préparation...</p>
     }
   </div>
 </div>

@@ -18,10 +18,7 @@ export const routes: Routes = [
   { path: 'shop', component: ShopComponent },
 
   // Routes pour les pages légales (on utilise le même composant avec des données différentes)
-  { path: 'cgv', component: LegalComponent, data: { type: 'cgv' } },
-  { path: 'mentions-legales', component: LegalComponent, data: { type: 'mentions' } },
-  { path: 'confidentialite', component: LegalComponent, data: { type: 'confidentialite' } },
-
+  { path: 'legal/:type', component: LegalComponent },
   // Redirection par défaut
   { path: '', redirectTo: 'meditations', pathMatch: 'full' },
   { path: '**', redirectTo: 'meditations' } // Sécurité : redirige les erreurs vers l'accueil

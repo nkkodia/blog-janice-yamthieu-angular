@@ -1,6 +1,8 @@
 import { Component, signal } from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {CommonModule} from '@angular/common';
+import {NewsletterService} from './services/newsletter.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -13,24 +15,38 @@ export class AppComponent {
   showSuccessPopup = false;
   newsletterSuccess = false;
 
-  async handleSubmit(event: Event) {
+  constructor(private newsletterService: NewsletterService, private http: HttpClient) {}
+
+
+  handleSubmit(event: Event) {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
+    const emailValue = formData.get('email');
 
-    try {
-      await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
-      });
+    // Configuration de l'appel Brevo
+    const url = 'https://api.brevo.com/v3/contacts';
+    const headers = new HttpHeaders({
+      'api-key': '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', // La clé trouvée dans "Clés API et MCP"
+      'Content-Type': 'application/json'
+    });
 
-      this.newsletterSuccess = true;
-      this.showSuccessPopup = true;
-      form.reset();
+    const body = {
+      email: emailValue,
+      listIds: [3], // Ton ID de liste récupéré
+      updateEnabled: true
+    };
 
-    } catch (error) {
-      console.error("Erreur Netlify:", error);
-    }
+    // Envoi de la requête
+    this.http.post(url, body, { headers }).subscribe({
+      next: () => {
+        alert('Inscription réussie dans la liste de Janice !');
+        form.reset();
+      },
+      error: (err) => {
+        console.error('Erreur technique :', err);
+        alert('Vérifie ta clé API ou la connexion.');
+      }
+    });
   }
 }

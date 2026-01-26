@@ -42,4 +42,14 @@ export class ContentfulService {
       order: ['-sys.createdAt'] // Affiche les plus récents en premier
     }));
   }
+
+  // Récupérer une méditation spécifique via son slug
+  async getMeditationBySlug(slug: string) {
+    const response = await this.client.getEntries({
+      content_type: 'mditation', // Doit correspondre à l'ID dans Contentful
+      'fields.slug': slug,
+      limit: 1
+    });
+    return response.items[0];
+  }
 }

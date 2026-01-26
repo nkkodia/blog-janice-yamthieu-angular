@@ -72,16 +72,17 @@
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-3 gap-8 w-full md:w-auto">
-      <div class="flex flex-col gap-2">
-        <h4 class="text-[10px] font-black text-stone-300 uppercase tracking-widest">Boutique</h4>
-        <a routerLink="/shop" class="text-stone-500 hover:text-[#8B5E8B] text-sm">Ebooks & Audio</a>
-        <a routerLink="/cgv" class="text-stone-500 hover:text-[#8B5E8B] text-sm">CGV</a>
-      </div>
 
-      <div class="flex flex-col gap-2">
-        <h4 class="text-[10px] font-black text-stone-300 uppercase tracking-widest">Infos</h4>
-        <a routerLink="/mentions-legales" class="text-stone-500 hover:text-[#8B5E8B] text-sm">Mentions</a>
-        <a routerLink="/contact" class="text-stone-500 hover:text-[#8B5E8B] text-sm font-bold">Contact</a>
+
+      <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+        <p class="text-stone-400 text-xs italic">© 2026 Janice Allémé-Yamthieu</p>
+
+        <nav class="flex gap-6">
+          <a routerLink="/legal/mentions" class="text-[10px] font-bold uppercase text-stone-400 hover:text-[#8B5E8B]">Mentions Légales</a>
+          <a routerLink="/legal/cgv" class="text-[10px] font-bold uppercase text-stone-400 hover:text-[#8B5E8B]">CGV</a>
+          <a routerLink="/legal/confidentialite" class="text-[10px] font-bold uppercase text-stone-400 hover:text-[#8B5E8B]">Confidentialité</a>
+          <a routerLink="/legal/cookies" class="text-[10px] font-bold uppercase text-stone-400 hover:text-[#8B5E8B]">Cookies</a>
+        </nav>
       </div>
     </div>
   </div>

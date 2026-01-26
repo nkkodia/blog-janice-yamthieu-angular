@@ -1,0 +1,54 @@
+<div class="bg-[#FAF9F6] min-h-screen py-16 px-4">
+  <div class="max-w-3xl mx-auto">
+
+    @if (!loading && meditation) {
+      <article class="animate-fade-in">
+
+        <header class="mb-12 text-center">
+          <span class="inline-block bg-[#8B5E8B]/10 text-[#8B5E8B] font-black text-[10px] uppercase tracking-[0.2em] px-4 py-1.5 rounded-full mb-6">
+            {{ meditation.fields.categorie }}
+          </span>
+          <h1 class="text-5xl font-serif font-bold text-[#4B2C5E] italic leading-tight">
+            {{ meditation.fields.titre }}
+          </h1>
+        </header>
+
+        @if (meditation.fields.image) {
+          <div class="mb-12 rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white">
+            <img [src]="'https:' + meditation.fields.image.fields.file.url"
+                 [alt]="meditation.fields.titre"
+                 class="w-full h-auto object-cover">
+          </div>
+        }
+
+        @if (meditation.fields.audio) {
+          <div class="mb-12 p-8 bg-white rounded-[2rem] shadow-xl shadow-[#8B5E8B]/5 border border-[#F3E8F3] flex flex-col gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-[#8B5E8B] rounded-full animate-pulse"></div>
+              <span class="text-[10px] font-black text-stone-400 uppercase tracking-widest">Écouter la méditation</span>
+            </div>
+            <audio controls class="w-full accent-[#8B5E8B]">
+              <source [src]="'https:' + meditation.fields.audio.fields.file.url" type="audio/mpeg">
+            </audio>
+          </div>
+        }
+
+        <div class="prose prose-stone lg:prose-xl mx-auto text-stone-700 leading-relaxed italic"
+             [innerHTML]="renderHtml(meditation.fields.contenu)">
+        </div>
+
+        <footer class="mt-16 pt-8 border-t border-[#F3E8F3] flex justify-center">
+          <button routerLink="/meditations" class="text-[#8B5E8B] font-black uppercase tracking-widest text-[11px] flex items-center gap-2 hover:translate-x-[-4px] transition-transform">
+            ← Retour aux méditations
+          </button>
+        </footer>
+      </article>
+    } @else if (loading) {
+      <div class="animate-pulse flex flex-col items-center">
+        <div class="h-4 w-24 bg-stone-200 rounded-full mb-8"></div>
+        <div class="h-12 w-3/4 bg-stone-200 rounded-xl mb-12"></div>
+        <div class="h-64 w-full bg-stone-200 rounded-[2.5rem]"></div>
+      </div>
+    }
+  </div>
+</div>

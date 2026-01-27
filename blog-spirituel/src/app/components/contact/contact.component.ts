@@ -31,7 +31,7 @@ export class ContactComponent {
       // 2. Envoi EmailJS à Janice
       await emailjs.sendForm(
         'service_hh1jjka',
-        'contact_form',
+        'template_ey4is37',
         form,
         '0SZXj3QB-3FeWFIum'
       );

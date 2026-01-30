@@ -3,6 +3,7 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {NewsletterService} from './services/newsletter.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class AppComponent {
   showSuccessPopup = false;
   newsletterSuccess = false;
-  private apiKey: string = process.env['BREVO_API_KEY'] ?? '';
+  private apiKey: string = environment.brevoApiKey;
   constructor(private newsletterService: NewsletterService, private http: HttpClient) {}
 
 

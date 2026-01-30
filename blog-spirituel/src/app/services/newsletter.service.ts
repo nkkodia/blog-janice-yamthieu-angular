@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class NewsletterService {
   private apiUrl = 'https://api.brevo.com/v3/contacts';
 
   // À REMPLACER par la clé que Janice va te donner
-  private apiKey: string = process.env['BREVO_API_KEY'] ?? '';
+  private apiKey: string = environment.brevoApiKey;
   constructor(private http: HttpClient) {}
 
   subscribe(email: string) {

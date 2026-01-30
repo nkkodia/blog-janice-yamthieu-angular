@@ -9,8 +9,7 @@ export class NewsletterService {
   private apiUrl = 'https://api.brevo.com/v3/contacts';
 
   // À REMPLACER par la clé que Janice va te donner
-  private apiKey = '';
-
+  private apiKey: string = process.env['BREVO_API_KEY'] ?? '';
   constructor(private http: HttpClient) {}
 
   subscribe(email: string) {

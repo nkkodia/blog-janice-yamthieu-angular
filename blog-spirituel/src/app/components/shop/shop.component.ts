@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import {ContentfulService} from '../../services/contentful';
-import {AsyncPipe} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {RouterLink} from '@angular/router';
+import { RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   imports: [
-    AsyncPipe,
     FormsModule,
     RouterLink
   ],
@@ -27,7 +23,7 @@ export class ShopComponent implements OnInit {
     this.contentfulService.getProducts().subscribe({
       next: (data: any) => {
         this.allProduits = data.items || data;
-        this.filtrer('ebook'); // Lance le premier filtre
+        this.filtrer('ebook');
       }
     });
   }

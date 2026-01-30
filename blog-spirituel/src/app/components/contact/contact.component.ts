@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import emailjs from '@emailjs/browser';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html'
 })
 export class ContactComponent {
-  showSuccessPopup = false;
   isSubmitting = false;
+  private router = inject(Router); // Injecte le Router
 
   async handleContactSubmit(event: Event) {
     event.preventDefault();
@@ -16,19 +17,10 @@ export class ContactComponent {
     this.isSubmitting = true;
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
-
-    // On récupère la valeur du menu déroulant "objet"
     const objetSelectionne = formData.get('objet');
 
     try {
-      // 1. Archivage Netlify
-      await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
-      });
-
-      // 2. Envoi EmailJS à Janice
+      // 1. Envoi EmailJS
       await emailjs.sendForm(
         'service_hh1jjka',
         'template_ey4is37',
@@ -36,19 +28,19 @@ export class ContactComponent {
         '0SZXj3QB-3FeWFIum'
       );
 
-      // 3. Logique Spécifique PayPal
+      // 2. Logique PayPal si besoin
       if (objetSelectionne === 'don') {
-        // On affiche d'abord un message ou on redirige directement
-        // L'utilisation de _blank permet de garder le site ouvert à côté
         window.open('https://www.paypal.me/ApoYamthieu', '_blank');
       }
 
-      this.showSuccessPopup = true;
-      form.reset();
+      // 3. REDIRECTION ET MESSAGE
+      // On redirige vers l'accueil (ou une page succès) avec un message
+      alert("Votre message a bien été envoyé ! Janice vous répondra prochainement.");
+      this.router.navigate(['/meditations']); // On quitte la page contact
 
     } catch (error) {
       console.error("Erreur :", error);
-      alert("Une erreur est survenue lors de l'envoi.");
+      alert("Une erreur est survenue.");
     } finally {
       this.isSubmitting = false;
     }

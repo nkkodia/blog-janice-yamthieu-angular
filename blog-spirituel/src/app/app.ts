@@ -14,7 +14,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class AppComponent {
   showSuccessPopup = false;
   newsletterSuccess = false;
-
+  private apiKey: string = process.env['BREVO_API_KEY'] ?? '';
   constructor(private newsletterService: NewsletterService, private http: HttpClient) {}
 
 
@@ -27,7 +27,7 @@ export class AppComponent {
     // Configuration de l'appel Brevo
     const url = 'https://api.brevo.com/v3/contacts';
     const headers = new HttpHeaders({
-      'api-key': '', // La clé trouvée dans "Clés API et MCP"
+      'api-key': this.apiKey, // La clé trouvée dans "Clés API et MCP"
       'Content-Type': 'application/json'
     });
 

@@ -25,28 +25,16 @@ export class AppComponent {
     const formData = new FormData(form);
     const emailValue = formData.get('email');
 
-    // Configuration de l'appel Brevo
-    const url = 'https://api.brevo.com/v3/contacts';
-    const headers = new HttpHeaders({
-      'api-key': this.apiKey, // La clé trouvée dans "Clés API et MCP"
-      'Content-Type': 'application/json'
-    });
+    const url = '/.netlify/functions/subscribe';
 
-    const body = {
-      email: emailValue,
-      listIds: [3], // Ton ID de liste récupéré
-      updateEnabled: true
-    };
-
-    // Envoi de la requête
-    this.http.post(url, body, { headers }).subscribe({
+    this.http.post(url, { email: emailValue }).subscribe({
       next: () => {
         alert('Inscription réussie dans la liste de Janice !');
         form.reset();
       },
       error: (err) => {
         console.error('Erreur technique :', err);
-        alert('Vérifie ta clé API ou la connexion.');
+        alert('Un souci est survenu. Réessaye plus tard.');
       }
     });
   }

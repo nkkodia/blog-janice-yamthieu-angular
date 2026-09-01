@@ -43,5 +43,5 @@ L'application est ensuite accessible sur `http://localhost:4200`.
 
 ## 👤 Auteur
 
-Développé par **[Votre Nom]** — Développeur Full-Stack (Java/Spring, Angular, React/Next.js)
-[LinkedIn] · [GitHub](https://github.com/nkkodia)
+Développé par **Kouamé-Kodia N'tanouan** — Développeur Full-Stack (Java/Spring, Angular, React/Next.js)
+www.linkedin.com/in/maryline-kouamé-kodia-078297179 · [GitHub](https://github.com/nkkodia)
